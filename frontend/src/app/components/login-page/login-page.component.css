@@ -1,0 +1,16 @@
+.container {
+    margin-top: 50px;
+    width: 70%;
+    
+  }
+  .card-header {
+    background-color: #f8f9fa;
+  }
+  .btn-google {
+    background-color: #db4437;
+    color: white;
+  }
+  .text-right{
+    margin-left: 50px;
+  }
+

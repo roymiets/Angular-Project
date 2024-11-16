@@ -1,0 +1,19 @@
+.user-profile {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 300px;
+    margin: auto;
+    text-align: left;
+  }
+  
+  .user-profile h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .user-profile p {
+    font-size: 18px;
+    margin: 5px 0;
+  }
+  

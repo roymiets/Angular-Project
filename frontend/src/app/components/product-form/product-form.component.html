@@ -1,0 +1,85 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header text-center">
+          <h2>{{heading}}</h2>
+        </div>
+        <div class="card-body">
+          <div *ngIf="message" class="mb-3">
+            <div [ngClass]="{'alert-success': messageType === 'success', 'alert-danger': messageType === 'error'}" class="alert" role="alert">
+              {{ message }}
+            </div>
+          </div>
+          <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="container mt-4">
+      
+            <div class="form-group">
+              <label for="productName">Product Name</label>
+              <input id="productName" formControlName="productName" type="text" class="form-control" placeholder="Enter product name">
+              <div *ngIf="productForm.get('productName')?.invalid && productForm.get('productName')?.touched" class="text-danger">
+                <small *ngIf="productForm.get('productName')?.errors?.['required']">product name is required.</small>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="productSize">Product Size</label>
+              <input id="productSize" formControlName="productSize" type="text" class="form-control" placeholder="Enter product size">
+              <div *ngIf="productForm.get('productSize')?.invalid && productForm.get('productSize')?.touched" class="text-danger">
+                <small *ngIf="productForm.get('productSize')?.errors?.['required']">product Size is required.</small>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="price">Price</label>
+              <input id="price" formControlName="price" type="number" class="form-control" placeholder="Enter product price">
+              <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="text-danger">
+                <small *ngIf="productForm.get('price')?.errors?.['required']">product price is required.</small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea id="description" formControlName="description" class="form-control" placeholder="Enter product description"></textarea>
+              <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched" class="text-danger">
+                <small *ngIf="productForm.get('description')?.errors?.['required']">product description is required.</small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="img"> Product Image URL</label>
+              <input id="img" formControlName="img" type="text" class="form-control" placeholder="enter product image  url">
+              <!-- <input type="file" (change)="onFileSelected($event)" class="form-control mt-2"> -->
+              <div *ngIf="productForm.get('img')?.invalid && productForm.get('img')?.touched" class="text-danger">
+                <small *ngIf="productForm.get('img')?.errors?.['required']">product img url is required.</small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="rating">Rating</label>
+              <input id="rating" formControlName="rating" type="number" min="0" max="5" class="form-control" placeholder="Enter product rating">
+              <div *ngIf="productForm.get('rating')?.invalid && productForm.get('rating')?.touched" class="text-danger">
+                <small *ngIf="productForm.get('rating')?.errors?.['required']">product rating is required.</small>
+              </div>
+            </div>
+           
+            <div class="form-group">
+              <label for="category">Category</label>
+              <input id="category" formControlName="category" type="text" class="form-control" placeholder="Enter product category">
+              <div *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched" class="text-danger">
+                <small *ngIf="productForm.get('category')?.errors?.['required']">product category is required.</small>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="brand">Brand</label>
+              <input id="brand" formControlName="brand" type="text" class="form-control" placeholder="Enter product brand">
+              <div *ngIf="productForm.get('brand')?.invalid && productForm.get('brand')?.touched" class="text-danger">
+                <small *ngIf="productForm.get('brand')?.errors?.['required']">product brand is required.</small>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center mb-3 mt-3">
+              <button type="submit" class="btn btn-outline-success" [disabled]="productForm.invalid">{{buttonText}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

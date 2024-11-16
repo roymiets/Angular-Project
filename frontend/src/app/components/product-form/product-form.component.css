@@ -1,0 +1,14 @@
+.container {
+    margin-top: 50px;
+    width: 70%;
+    
+  }
+  .card-header {
+    background-color: #f8f9fa;
+  }
+  .form-group{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+ 
+  

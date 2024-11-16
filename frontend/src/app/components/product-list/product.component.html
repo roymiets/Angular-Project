@@ -1,0 +1,101 @@
+<div class="container mt-4">
+  <div class="row mb-2 align-items-center">
+    <div class="col-12 mb-2">
+      <div class="row">
+        <div class="col">
+          <select class="form-control" >
+            <option value="">All Categories</option>
+            <!-- <option *ngFor="let category of categories">{{ category }}</option> -->
+          </select>
+        </div>
+        <div class="col">
+          <select class="form-control" >
+            <option value="">All Stock</option>
+            <option value="inStock">In Stock</option>
+            <option value="outOfStock">Out of Stock</option>
+          </select>
+        </div>
+        <div class="col">
+          <select class="form-control" >
+            <option value="">All Status</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+      </div>
+  <div class="row mb-2 align-items-center">
+  
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Search..." >
+    </div>
+    <div class="col">
+      <button class="btn btn-outline-primary " >Export</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-outline-success" (click)="addProduct()">+ Add </button>
+    </div>
+    
+  </div>
+  <div *ngIf="message" class="mb-3">
+    <div [ngClass]="{'alert-success': messageType === 'success', 'alert-danger': messageType === 'error'}" class="alert" role="alert">
+      {{ message }}
+    </div>
+  </div>
+  <table id="myTable" mat-table [dataSource]="dataSource" class="table table-bordered " matSort >
+    
+    <thead>
+      <tr>
+        <th><input type="checkbox" (change)="selectAll($event)"></th>
+        <!-- <th>Product Name</th>
+        <th>Description</th>
+        <th>Image</th> -->
+        <th mat-sort-header="productName">Product</th>
+        <th mat-sort-header="productSize">Product Size</th>
+        <th mat-sort-header="price">Price</th>
+        <th mat-sort-header="rating">Rating</th>
+        <th mat-sort-header="category">Category</th>
+        <th mat-sort-header="brand">Brand</th>
+        <th>Action</th>
+      </tr>
+      
+    </thead>
+    <tbody>
+    
+      <tr *ngFor="let product of products  | paginate: { itemsPerPage: 5, currentPage: p}">
+        <td><input type="checkbox" [value]="product.id" (change)="onSelect($event, product)"></td>
+        <!-- <td>{{ product.productName }}</td>
+        <td>{{ product.description }}</td>
+        <td><img [src]="product.image" alt="{{ product.name }}" width="50"></td> -->
+        <td>
+          <div class="product-info">
+            <img src="image_url" alt=" Image" style="width:50px;height:50px;">
+            <div>
+              <strong>{{product.productName}}</strong>
+              <p>{{product.description}}</p>
+            </div>
+          </div>
+        </td>
+        <td>{{ product.productSize }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.rating }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.brand }}</td>
+        <td>
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-primary btn-sm" (click)="editProduct(product._id)"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger btn-sm" (click)="deleteProduct(product._id)"><i class="fas fa-trash-alt"></i></button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls 
+  previousLabel="Prev" 
+  nextLabel="Next" 
+  [maxSize]="5" 
+  [responsive]="true" 
+  (pageChange)="p = $event">
+</pagination-controls>
+</div>
+
+

@@ -1,0 +1,54 @@
+<div class="container mt-5 "  >
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card">
+         <div class="card-header text-center">
+            <h2>Welcome back!</h2>
+            <p>Enter to get unlimited access to data and information</p>
+          </div>
+          <div class="card-body">
+            <div *ngIf="message" class="mb-3">
+              <div [ngClass]="{'alert-success': messageType === 'success', 'alert-danger': messageType === 'error'}" class="alert" role="alert">
+                {{ message }}
+              </div>
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter your email">
+                <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
+                  <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</small>
+                  <small *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email format.</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter your password">
+                <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+                  <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</small>
+                  <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long.</small>
+                </div>
+              </div>
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="remember-me" formControlName="rememberMe">
+                <label class="form-check-label" for="remember-me">Remember me</label>
+                <a href="#" class="text-right " [routerLink]="['/register']">Forgot your password?</a>
+              </div>
+                <div class="d-flex justify-content-center">
+                  <button type="submit" class="btn btn-outline-success mt-3 mb-3" [disabled]="loginForm.invalid">Login</button>
+                </div>
+                   <p class="text-center">--------or login with-------</p>
+                   <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-outline-primary ">
+                      <i class="fab fa-google" style="color: #f49542;"></i> Sign up with Google
+                    </button>
+                  </div>
+                  
+                    <p class="text-center mt-3">Don't have an account? <a href="#" [routerLink]="['/register']">Register here</a></p>
+            </form>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
